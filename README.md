@@ -10,7 +10,7 @@
 - [second] cd angular_formularios-main/gatitobook and run npm i
 - [third] cd angular_formularios-main/api (again) and run npm start (Server api running)
 - [fourth] cd angular_formularios-main/gatitobook and run ng serve
-- [Obs] Login: marco Password: 123
+- [Obs] Login: marco Password: 123 or Register new user
 
 **Requirements Tools:**  
 Node 16.13.2^  
