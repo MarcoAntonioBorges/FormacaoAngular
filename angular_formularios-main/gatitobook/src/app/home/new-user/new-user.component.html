@@ -1,0 +1,90 @@
+<h4 class="text-center">Register and show your pet for World!</h4>
+
+<form class="form mt-4" [formGroup]="newUserForm" (submit)="register()">
+  <div class="form-group">
+    <input
+      type="email"
+      class="form-control"
+      placeholder="E-mail"
+      formControlName="email"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('email')?.errors?.['required'] &&
+        newUserForm.get('email')?.touched"
+      message="E-mail is required"
+    ></app-message>
+    <app-message
+      *ngIf="
+        newUserForm.get('email')?.errors?.['email'] &&
+        newUserForm.get('email')?.touched"
+      message="Email incorrect format"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Full name"
+      formControlName="fullName"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('fullName')?.errors &&
+        newUserForm.get('fullName')?.touched
+      "
+      message="Name incorrect"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      formControlName="userName"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('userName')?.errors?.['required'] &&
+        newUserForm.get('userName')?.touched"
+      message="Username is required"
+    ></app-message>
+    <app-message
+      *ngIf="
+        newUserForm.get('userName')?.errors?.['minuscule'] &&
+        newUserForm.get('userName')?.touched"
+      message="Username must be lowercase"
+    ></app-message>
+    <app-message
+      *ngIf="
+        newUserForm.get('userName')?.errors?.['existingUser']"
+      message="Username already exists"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <app-message
+      *ngIf="
+        newUserForm.get('password')?.errors?.['required'] &&
+        newUserForm.get('password')?.touched"
+      message="Password is required"
+    ></app-message>
+    <app-message
+    *ngIf="
+    newUserForm.errors?.['passwordEqualUsername']"
+    message="Password must be different from username"
+    ></app-message>
+  </div>
+
+  <button class="btn btn-primary btn-block">Register</button>
+</form>
+
+<!-- routerLink criado de maneira diferente, o parametro inves de ser o nome do componente direito, estou colocando o caminho completo do component,
+pois, se eu colocar apena 'home' ele vai criar um sub rota, ou seja, vai ser redirecionado para /home/newuser/home e isso é uma rota inexistente,
+por isso coloquei o caminho, '/home', pois assim, ele vai conseguir redirecionar para o componente correto -->
+<p>Are you a user? <a [routerLink]="['/home']">Login</a></p>

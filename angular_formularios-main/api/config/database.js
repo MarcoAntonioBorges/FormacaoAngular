@@ -22,6 +22,18 @@ INSERT INTO user (
 ) SELECT 'alvaro', 'alvaro@gatitobook.com.br', '12345678', 'Alvaro' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'alvaro')
 `;
 
+// My personal user
+const INSERT_DEFAULT_USER_2 = 
+`
+INSERT INTO user (
+    user_name, 
+    user_email,
+    user_password,
+    user_full_name
+) SELECT 'marco', 'marco@gatitobook.com.br', '123', 'Marco' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'marco')
+`;
+
+
 const PHOTO_SCHEMA = 
 `
 CREATE TABLE IF NOT EXISTS photo (
@@ -65,6 +77,7 @@ db.serialize(() => {
     db.run("PRAGMA foreign_keys=ON");
     db.run(USER_SCHEMA);
     db.run(INSERT_DEFAULT_USER_1);
+    db.run(INSERT_DEFAULT_USER_2);
     db.run(PHOTO_SCHEMA);        
     db.run(COMMENT_SCHEMA);     
     db.run(LIKE_SCHEMA);        
